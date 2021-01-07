@@ -4,6 +4,10 @@ const hbs = require('express-handlebars');
 const morgan = require('morgan');
 
 const app = express();
+const port = 3000;
+
+// app.use(express.static(path.join(__dirname, 'pubic')));
+app.use(express.static('/src/public'));
 
 //HTTP logger
 app.use(morgan('combined'));
@@ -18,11 +22,12 @@ app.engine(
 app.set('view engine', 'hbs');
 app.set('views', path.join(__dirname, 'resources', 'views'));
 
-const port = 3000;
-
 app.get('/', (req, res) => {
-  console.log('PATH: ', path.join(__dirname, 'resources', 'views'));
   res.render('home');
+});
+
+app.get('/news', (req, res) => {
+  res.render('news');
 });
 
 app.listen(port, () => {

@@ -6,17 +6,17 @@ const morgan = require('morgan');
 const app = express();
 const port = 3000;
 
-// app.use(express.static(path.join(__dirname, 'pubic')));
-app.use(express.static('/src/public'));
+app.use(express.static(path.join(__dirname, 'public\\')));
+// app.use(express.static('/src/public'));
 
 //HTTP logger
-app.use(morgan('combined'));
+// app.use(morgan('combined'));
 
 //Template engine
 app.engine(
   'hbs',
   hbs({
-    extname: '.hbs'
+    extname: '.hbs',
   })
 );
 app.set('view engine', 'hbs');
@@ -28,6 +28,11 @@ app.get('/', (req, res) => {
 
 app.get('/news', (req, res) => {
   res.render('news');
+});
+
+app.get('/search', (req, res) => {
+  console.log(req.query.author);
+  res.render('search');
 });
 
 app.listen(port, () => {

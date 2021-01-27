@@ -24,7 +24,7 @@
   },
   "homepage": "https://github.com/sieunhan1397/nodejs_blog#readme",
   "lint-staged": {
-    "src/**/*.{ts,json,scss}": "prettier"
+    "src/**/*.{ts,json,scss}": "prettier --write"
   },
   "husky": {
     "hooks": {
@@ -49,6 +49,7 @@
   "build": "rimraf ./build && tsc",
   "dependencies": {
     "express": "^4.17.1",
-    "express-handlebars": "^5.2.0"
+    "express-handlebars": "^5.2.0",
+    "mongoose": "^5.11.13"
   }
 }

@@ -1,16 +1,20 @@
 export {}
-const path = require('path');
-const express = require('express');
-const hbs = require('express-handlebars');
-const morgan = require('morgan');
-const route = require('./routes');
-const app = express();
-const port = 3000;
+const path = require('path')
+const express = require('express')
+const hbs = require('express-handlebars')
+const morgan = require('morgan')
+const route = require('./routes')
+//Connect Database
+const db = require('./config/db')
+db.connect()
 
-app.use(express.static(path.join(__dirname, 'public\\')));
+const app = express()
+const port = 3000
 
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
+app.use(express.static(path.join(__dirname, 'public\\')))
+
+app.use(express.urlencoded({ extended: true }))
+app.use(express.json())
 // app.use(express.static('/src/public'));
 
 //HTTP logger
@@ -22,12 +26,12 @@ app.engine(
   hbs({
     extname: '.hbs',
   })
-);
-app.set('view engine', 'hbs');
-app.set('views', path.join(__dirname, 'resources', 'views'));
+)
+app.set('view engine', 'hbs')
+app.set('views', path.join(__dirname, 'resources', 'views'))
 
-route(app);
+route(app)
 
 app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`);
-});
+  console.log(`Example app listening at http://localhost:${port}`)
+})

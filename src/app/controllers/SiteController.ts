@@ -1,17 +1,17 @@
 const Course = require('../models/Course')
+const { mongoosesToObject } = require('../../utils/mongoose')
 class SiteController {
   //[GET] /index
   index(req, res): void {
-    Course.find({}, function (err, courses) {
-      if (!err) {
-        res.json(courses)
-        return
-      }
-      res.status(400).json({
-        error: 'ERROR!!!',
-      })
-    })
-    // res.render('home');
+    // Course.find({})
+    //     .then(courses => res.render('home', {
+    //       courses: mongoosesToObject(courses)
+    //     }))
+    //     .catch(err => console.log(err));
+    Course.find({})
+      .lean()
+      .then((courses) => res.render('home', { courses }))
+      .catch((err) => console.log(err))
   }
   //[GET] /search
   search(req, res): void {

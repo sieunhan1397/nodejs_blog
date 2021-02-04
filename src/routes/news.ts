@@ -1,8 +1,8 @@
-export{}
-const newsRouter = require('express').Router();
-const newsController = require('../app/controllers/NewsController');
+export {}
+const newsRouter = require('express').Router()
+const newsController = require('../app/controllers/NewsController')
 
-newsRouter.use('/:slug', newsController.show);
-newsRouter.use('/', newsController.index);
+newsRouter.get('/:slug', newsController.show)
+newsRouter.get('/', newsController.index)
 
-module.exports = newsRouter;
+module.exports = newsRouter
